@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualização de Formas de Onda</title>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+</head>
+<body>
+    <div id="chart"></div>
+    <script>
+        async function fetchData() {
+            try {
+                const response = await fetch('http://localhost:7654/dados');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch data');
+                }
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                // Handle the error gracefully, e.g., show a message to the user
+            }
+        }
+
+        function renderChart(data) {
+            const options = {
+                chart: {
+                    type: 'line'
+                },
+                series: data.map(device => ({
+                    name: `Device ${device.address}`,
+                    data: device.wave.map(point => [point[0], point[1]])
+                })),
+                xaxis: {
+                    type: 'numeric'
+                }
+            };
+
+            const chart = new ApexCharts(document.querySelector("#chart"), options);
+            chart.render();
+        }
+
+        fetchData().then(data => {
+            if (data) {
+                renderChart(data);
+            } else {
+                // Handle case when data is not available
+            }
+        });
+    </script>
+</body>
+</html>
