@@ -20,9 +20,9 @@ This project is a solution to the programming challenge by Toledo & Souza. It in
 
 1. Clone the repository::
    ```bash
-   git clone https://github.com/Beatriz-Diniz/Desafio-de-programa-o-Toledo-Souza.git
+   git clone https://github.com/Beatriz-Diniz/Desafio-de-programacao-Toledo-Souza.git
    
-   cd Desafio-de-programa-o-Toledo-Souza
+   cd Desafio-de-programacao-Toledo-Souza
    ```
 2. Run in a terminal:
 
