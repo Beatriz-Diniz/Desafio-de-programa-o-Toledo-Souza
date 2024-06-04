@@ -28,7 +28,6 @@ def index():
 
 @app.route('/dados', methods=['GET'])
 def get_dados():
-    print(collection)
     devices = list(collection.find({}, {'_id': 0}))
     return jsonify(devices)
 
